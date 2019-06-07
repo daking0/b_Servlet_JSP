@@ -1,0 +1,78 @@
+ * 애노테이션 (Annotation)
+  ; 일명 메타데이터(meta data)
+    JDK 5에 포함
+      환경구성에 대한 약속
+    
+  용도
+ 1) 컴파일러에 정보를 알려준다
+ 2) 컴파일할 때와 설치시의 작업을 지정한다
+ 3) 실행할 때 별도의 처리가 필요할 때
+ 4) 환경설정 파일을 대신할 때
+ 
+ java standard edition
+ @Override          : interface, 추상클래스 상속 시, Overriding
+ @Deprecated        : 더 이상 유효하지 않은, 사용안했으면
+ @SuppressWarnings  : error(무조건 고쳐야 실행됨)
+                      warning(실행은 되지만 위험성을 경고)
+ 
+ java Enterprise edition
+ @WebServlet
+ ...
+ 
+ @Target(적용대상)
+ TYPE				: 클래스/인터페이스/열거형
+ ANNOTATION_TYPE	: 어노테이션
+ FIELD				: 필드
+ CONSTRUCTOR		: 생성자
+ METHOD				: 메서드
+ LOCAL_VARIABLE		: 로컬 변수
+ PACKAGE			: 패키지
+ 
+ @Target(ElementType.TYPE, ElementType.METHOD)
+ public @interface AnnotationName{
+ }
+ 
+ 
+ 어노테이션 유지 정책
+ ; 어노테이션 정보가 언제까지 살아있니
+ @Retention(RetentionPolicy.키워드)
+ SOURCE   : 소스상에서만 어노테이션 정보 유지
+ CLASS    : 바이트 코드 파일까지 어노테이션 정보 유지
+ RUNTIME  : 실행할 때 Reflection API로 정보를 얻을 수 있다
+ 
+ 
+ 리플렉션 API를 통해 현재 실행중인 프로그램의 필드,생성자,메서드,클래스
+ 등등의 정보를 얻을 수 있다.
+ 
+ Field[] getFields()  : 필드정보를 Field배열로 리턴
+ Constructor[] getConstructors() : 
+                    생성자 정보를 Constructor 배열로 리턴
+ Method[] getDeclaredMethods() : 
+                   메서드 정보를 Method배열로 리턴
+                   
+boolean isAnnotationPresentation(
+		Class<? extends Annotation> annotationClass)
+		지정한 어노테이션이 적용되었는지 여부
+Annotation getAnnotation(Class<T> annotationClass)
+            지정한 어노테이션이 적용되어 있으면 어노테이션을 리턴하고
+           그렇지 않으면 null을 리턴한다
+Annotation[] getAnnotations()
+          적용된 모든 어노테이션을 리턴한다.
+Annotation[] getDeclaredAnnotations()
+         직접 적용된 모든 어노테이션을 리턴한다.
+                                                        
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
